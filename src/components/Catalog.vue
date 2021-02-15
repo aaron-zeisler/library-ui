@@ -32,14 +32,25 @@
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
         data() {
             return {
-                books: [
-                    {id: "448E55A3-E88E-4597-B3CB-11A844EFDA5D", isbn: "9781451673265", title: "Fahrenheit 451", author: "Ray Bradbury", description: "It was a pleasure to burn"},
-                ]
+               books: []
             }
-        }
+        },
+        mounted( ) {
+            this.getBooks()
+        },
+        methods: {
+            getBooks() {
+                let url = this.$libraryAPIBaseUrl + "/books";
+                axios.get(url).then((response) => {
+                    this.books = response.data;
+                }).catch( error => { console.log(error); });
+            }
+        },
     }
 </script>
 

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './plugins/axios'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Home from './components/Home.vue'
@@ -9,6 +10,8 @@ import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
+
+Vue.prototype.$libraryAPIBaseUrl = 'https://vjg52bx06f.execute-api.us-west-1.amazonaws.com/Prod'
 
 const router = new VueRouter({
   mode: 'history',
