@@ -56,7 +56,7 @@
 
 <style>
 #catalog-table {
-    margin-top: 60px;
+    margin-top: 50px;
 }
 #catalog-table.table {
     border-width: 1px solid gray;
