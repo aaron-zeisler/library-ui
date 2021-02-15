@@ -42,3 +42,12 @@
         }
     }
 </script>
+
+<style>
+#catalog-table {
+    margin-top: 60px;
+}
+#catalog-table.table {
+    border-width: 1px solid gray;
+}
+</style>
