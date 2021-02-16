@@ -12,6 +12,7 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 
 Vue.prototype.$libraryAPIBaseUrl = 'https://vjg52bx06f.execute-api.us-west-1.amazonaws.com/Prod'
+//Vue.prototype.$libraryAPIBaseUrl = 'http://localhost:3000'
 
 const router = new VueRouter({
   mode: 'history',

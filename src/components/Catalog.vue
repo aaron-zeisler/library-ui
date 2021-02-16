@@ -1,13 +1,12 @@
 <template>
     <div>
         <div>
-            <h1>View the library's catalog of book</h1>
+            <h1>View the library's catalog of books</h1>
         </div>
         <div id="catalog-table">
             <v-simple-table>
                 <template v-slot:default>
                     <thead>
-                        <th>Book ID</th>
                         <th>ISBN</th>
                         <th>Title</th>
                         <th>Author</th>
@@ -18,10 +17,9 @@
                         v-for="book in books"
                         :key="book.id"
                         >
-                            <td>{{ book.id }}</td>
                             <td>{{ book.isbn }}</td>
-                            <td>{{ book.title }}</td>
-                            <td>{{ book.author }}</td>
+                            <td class="nowrap">{{ book.title }}</td>
+                            <td class="nowrap">{{ book.author }}</td>
                             <td>{{ book.description }}</td>
                         </tr>
                     </tbody>
@@ -60,5 +58,8 @@
 }
 #catalog-table.table {
     border-width: 1px solid gray;
+}
+.nowrap {
+    white-space: nowrap;
 }
 </style>
