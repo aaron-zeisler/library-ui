@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h1>Check Out a book from the library</h1>
+            <h1>Check a book out from the library</h1>
         </div>
         <div id="check-out">
             <v-container grid-list-lg>
@@ -29,6 +29,7 @@
                 :value="showError"
                 type="error"
                 transition="fade-transition"
+                class="alert"
             >
                 An error happened while checking out the book
             </v-alert>
@@ -36,6 +37,7 @@
                 :value="showSuccess"
                 type="success"
                 transition="fade-transition"
+                class="alert"
             >
                 The book was successfully checked out
             </v-alert>
@@ -119,6 +121,12 @@
 
 .v-select__selections input {
     display: none;
+}
+
+.alert {
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .custom-loader {

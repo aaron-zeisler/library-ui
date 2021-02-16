@@ -29,6 +29,7 @@
                 :value="showError"
                 type="error"
                 transition="fade-transition"
+                class="alert"
             >
                 An error happened while checking in the book
             </v-alert>
@@ -36,6 +37,7 @@
                 :value="showSuccess"
                 type="success"
                 transition="fade-transition"
+                class="alert"
             >
                 The book was successfully checked in
             </v-alert>
@@ -121,6 +123,12 @@
 
 .v-select__selections input {
     display: none;
+}
+
+.alert {
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .custom-loader {
