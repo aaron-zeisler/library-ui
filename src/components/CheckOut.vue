@@ -6,17 +6,39 @@
         <div id="check-out">
             <v-container grid-list-lg>
                 <v-select
-                :items="books"
-                :item-text="titleAndAuthor"
-                item-value="id"
-                label="Choose a book to check out"
-                style="width: 50%; display:inline-block; text-align: left;"
-                @change="changedValue"
+                    :items="filteredBooks"
+                    :item-text="titleAndAuthor"
+                    item-value="id"
+                    label="Choose a book to check out"
+                    style="width: 50%; display:inline-block; text-align: left;"
+                    @change="changedValue"
+                    no-data-text="All the books are checked out!"
                 ></v-select>
             </v-container>
-            <v-btn id="checkout-button" :disabled="buttonDisabled">
+            <v-btn
+                id="checkout-button"
+                :disabled="buttonDisabled"
+                class="ma-2"
+                :loading="loading"
+                color="secondary"
+                @click="buttonClicked"
+            >
                 Check Out
             </v-btn>
+            <v-alert
+                :value="showError"
+                type="error"
+                transition="fade-transition"
+            >
+                An error happened while checking out the book
+            </v-alert>
+            <v-alert
+                :value="showSuccess"
+                type="success"
+                transition="fade-transition"
+            >
+                The book was successfully checked out
+            </v-alert>
         </div>
     </div>
 </template>
@@ -29,10 +51,14 @@
             return {
                 books: [],
                 buttonDisabled: true,
+                loading: false,
+                selectedBook: "",
+                showError: false,
+                showSuccess: false,
             }
         },
         mounted( ) {
-            this.getBooks()
+            this.getBooks();
         },
         methods: {
             getBooks() {
@@ -47,8 +73,41 @@
             changedValue(value) {
                 if ( value != "" ) {
                     this.buttonDisabled = false;
+                    this.selectedBook = value;
                 }
             },
+            buttonClicked() {
+                this.loading = true;
+
+                let url = this.$libraryAPIBaseUrl + "/book/" + this.selectedBook + "/check-out";
+                axios.post(url).then(() => {
+                    console.log("successfully checked out");
+                    this.showSuccess = true;
+                    this.loading = false;
+                    this.hideSuccess();
+
+                }).catch( error => {
+                    console.log(error);
+                    this.showError = true;
+                    this.loading = false;
+                    this.hideError();
+                });
+            },
+            hideSuccess: function () {
+                window.setInterval(() => {
+                    this.showSuccess = false;
+                }, 3000)
+            },
+            hideError: function () {
+                window.setInterval(() => {
+                    this.showError = false;
+                }, 3000)
+            },
+        },
+        computed: {
+            filteredBooks() {
+                return this.books.filter(book => book.book_status === 'in')
+            }
         },
     }
 </script>
@@ -61,4 +120,41 @@
 .v-select__selections input {
     display: none;
 }
+
+.custom-loader {
+    animation: loader 1s infinite;
+    display: flex;
+  }
+  @-moz-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 </style>
