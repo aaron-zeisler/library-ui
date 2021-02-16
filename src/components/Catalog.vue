@@ -11,6 +11,7 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Description</th>
+                        <th>Status</th>
                     </thead>
                     <tbody>
                         <tr
@@ -21,6 +22,7 @@
                             <td class="nowrap">{{ book.title }}</td>
                             <td class="nowrap">{{ book.author }}</td>
                             <td>{{ book.description }}</td>
+                            <td>{{ book.book_status }}</td>
                         </tr>
                     </tbody>
                 </template>
@@ -55,6 +57,8 @@
 <style>
 #catalog-table {
     margin-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 #catalog-table.table {
     border-width: 1px solid gray;
