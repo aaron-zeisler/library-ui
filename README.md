@@ -1,5 +1,10 @@
 # library-ui
 
+UI for a libray management system
+
+I created this as part of a take-home coding challenge for a job interview
+
+
 ## Project setup
 ```
 npm install
@@ -7,18 +12,10 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+make serve
 ```
 
-### Compiles and minifies for production
+### Build and deploy to S3
 ```
-npm run build
+make deploy
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
